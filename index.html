@@ -26,14 +26,14 @@ footer { text-align:center; padding:15px; background: rgba(0,0,0,0.3); margin-to
 </header>
 
 <section class="container qr-section">
-  <h2>📱 QR арқылы кіру</h2>
-  <p>QR сканерлеп quiz-ке өтіңіз</p>
-  <!-- QR сканерлесе quiz бөлімін ашады -->
-  <a href="#questions">
-    <img src="qr-code.png" alt="QR код">
-  </a>
-  <p style="opacity:0.8; font-size:14px;">(QR кодты кейін нақты GitHub Pages URL-іне ауыстырамыз)</p>
-</section>
+    <h2>📱 QR арқылы кіру</h2>
+    <p>QR сканерлеп quiz-ке өтіңіз</p>
+    <a href="https://mik-pro.github.io/smartestafeta/" target="_blank">
+      <img src="A_QR_code_in_the_form_of_a_digital_2D_image_is_dis.png" alt="QR код">
+    </a>
+    <p style="opacity:0.8; font-size:14px;">Сканерлеп, сайтқа өтіңіз</p>
+  </section>
+  
 
 <section class="container" id="questions">
   <h2 style="text-align:center; margin-bottom:30px;">🧠 Логикалық сұрақтар</h2>
@@ -42,7 +42,6 @@ footer { text-align:center; padding:15px; background: rgba(0,0,0,0.3); margin-to
 </section>
 
 <script>
-// Сұрақтар
 const questions = [
   { q: 'Қай айда 28 күн бар?', options: ['Ақпан', 'Қаңтар', 'Барлық айда'], answer: 2 },
   { q: 'Екі әке мен екі бала бірге жүр. Барлығы неше адам?', options: ['2', '3', '4'], answer: 1 },
@@ -53,7 +52,6 @@ let score = 0;
 const quizDiv = document.getElementById('quiz');
 const scoreSpan = document.getElementById('score');
 
-// Quiz генерация
 questions.forEach((item, index) => {
   const card = document.createElement('div');
   card.className = 'card';

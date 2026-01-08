@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Estafeta – Аудандық Ақылды Эстафета</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; background: linear-gradient(135deg,#1e3c72,#2a5298); color:#fff; }
+header { text-align:center; padding:20px 10px; background: rgba(0,0,0,0.3); }
+h1 { margin:0; font-size:2em; }
+.container { max-width:800px; margin:30px auto; padding:0 15px; }
+.card { background: rgba(255,255,255,0.1); padding:15px 20px; margin-bottom:20px; border-radius:10px; }
+button { margin:5px; padding:8px 15px; border-radius:20px; border:none; cursor:pointer; background:#ff9800; color:#000; font-weight:bold; }
+button:hover { background:#ffc107; }
+.result { margin-top:10px; font-weight:bold; font-size:1.1em; }
+footer { text-align:center; padding:15px; background: rgba(0,0,0,0.3); margin-top:30px; }
+.qr-section { text-align:center; margin-bottom:40px; }
+.qr-section img { width:150px; height:150px; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Smart Estafeta</h1>
+  <p>Аудандық Ақылды Эстафета | Білім. Жылдамдық. Ақыл.</p>
+</header>
+
+<section class="container qr-section">
+  <h2>📱 QR арқылы кіру</h2>
+  <p>QR сканерлеп quiz-ке өтіңіз</p>
+  <!-- QR сканерлесе quiz бөлімін ашады -->
+  <a href="#questions">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=#questions" alt="QR код">
+  </a>
+  <p style="opacity:0.8; font-size:14px;">(QR кодты кейін нақты GitHub Pages URL-іне ауыстырамыз)</p>
+</section>
+
+<section class="container" id="questions">
+  <h2 style="text-align:center; margin-bottom:30px;">🧠 Логикалық сұрақтар</h2>
+  <div id="quiz"></div>
+  <h3 style="text-align:center; margin-top:20px;">Ұпай: <span id="score">0</span></h3>
+</section>
+
+<script>
+// Сұрақтар
+const questions = [
+  { q: 'Қай айда 28 күн бар?', options: ['Ақпан', 'Қаңтар', 'Барлық айда'], answer: 2 },
+  { q: 'Екі әке мен екі бала бірге жүр. Барлығы неше адам?', options: ['2', '3', '4'], answer: 1 },
+  { q: 'Қандай затты қолдану үшін алдымен сындыру керек?', options: ['Шыны', 'Жұмыртқа', 'Есік'], answer: 1 }
+];
+
+let score = 0;
+const quizDiv = document.getElementById('quiz');
+const scoreSpan = document.getElementById('score');
+
+// Quiz генерация
+questions.forEach((item, index) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  let html = `<h3>${index + 1}-сұрақ</h3><p>${item.q}</p>`;
+  item.options.forEach((opt, i) => {
+    html += `<button onclick="checkAnswer(${index}, ${i}, this)">${opt}</button>`;
+  });
+  html += `<p class="result"></p>`;
+  card.innerHTML = html;
+  quizDiv.appendChild(card);
+});
+
+function checkAnswer(qIndex, optIndex, btn) {
+  const card = btn.parentElement;
+  const result = card.querySelector('.result');
+  if (optIndex === questions[qIndex].answer) {
+    result.textContent = '✅ Дұрыс!';
+    score++;
+    scoreSpan.textContent = score;
+  } else {
+    result.textContent = '❌ Қате!';
+  }
+  card.querySelectorAll('button').forEach(b => b.disabled = true);
+}
+</script>
+
+<footer>
+  © 2026 Smart Estafeta | Аудандық білім жобасы
+</footer>
+
+</body>
+</html>
